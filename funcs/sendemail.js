@@ -65,7 +65,7 @@ export function handler(event, context, callback) {
 
     const mailOptions = {
         from: `Gombo <${process.env.EMAIL_USER}>`,
-        to: 'ongouadimitri5@gmail.com',
+        to: 'heyman.jonathan@gmail.com',
         subject: 'Changement de mot de passe',
         text: `Vous recevez ce message car vous avez signalé avoir oublié votre mot de passe. Suivez le lien ci-dessous pour définir un nouveau mot de passe. ${URL}`,
         html: `Vous recevez ce message car vous avez signalé avoir oublié votre mot de passe. <br><br>Suivez le lien ci-dessous pour définir un nouveau mot de passe. ${URL}`
