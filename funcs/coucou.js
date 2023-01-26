@@ -1,17 +1,17 @@
 require('dotenv').config();
 
-const admin = require('firebase-admin');
+import { initializeApp, credential as _credential, firestore } from 'firebase-admin';
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+initializeApp({
+    credential: _credential.cert(serviceAccount),
     databaseURL: process.env.DATABASE_URL
 });
 
-const db = admin.firestore();
+const db = firestore();
 
-exports.handler = async (event, context) => {
+export async function handler(event, context) {
     let comptes = await s("comptes");
     return {
         statusCode: 200,

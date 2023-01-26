@@ -1,20 +1,20 @@
 require('dotenv').config();
 
-const { v4: uuidv4 } = require('uuid');
-var nodemailer = require('nodemailer');
+import { v4 as uuidv4 } from 'uuid';
+import { createTransport } from 'nodemailer';
 
-const admin = require('firebase-admin');
+import { initializeApp, credential as _credential, firestore } from 'firebase-admin';
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+initializeApp({
+    credential: _credential.cert(serviceAccount),
     databaseURL: process.env.DATABASE_URL
 });
 
-const db = admin.firestore();
+const db = firestore();
 
-var transporter = nodemailer.createTransport({
+var transporter = createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
@@ -39,7 +39,7 @@ const one = async function (collection, params) {
     }
 }
 
-exports.handler = (event, context, callback) => {
+export function handler(event, context, callback) {
 
     if (event.httpMethod !== "POST") {
         callback(null, {

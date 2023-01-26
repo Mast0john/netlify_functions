@@ -1,7 +1,7 @@
 require('dotenv').config();
-const axios = require('axios')
+import { get } from 'axios';
 
-exports.handler = async (event) => {
+export async function handler(event) {
 
     console.log(event)
 
@@ -22,7 +22,7 @@ exports.handler = async (event) => {
 
     const url  = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
 
-    const res = await axios.get(url);
+    const res = await get(url);
 
     return {
         statusCode: 200,
